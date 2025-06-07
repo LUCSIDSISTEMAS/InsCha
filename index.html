@@ -5,9 +5,7 @@
   <title>Chá de Mulheres - Inscrição</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     html, body {
       margin: 0;
       padding: 0;
@@ -116,21 +114,14 @@
       margin-bottom: 20px;
     }
     .success-overlay span {
-  font-size: 1.5rem;
-  color: #a23c94;
-  font-weight: bold;
-  text-align: center;
-  max-width: 90%;
-  line-height: 1.4;
-}
-    @media (max-width: 660px) {
-      .content-wrapper {
-        transform: scale(0.9);
-        width: 100%;
-        height: auto;
-      }
+      font-size: 1.5rem;
+      color: #a23c94;
+      font-weight: bold;
+      text-align: center;
+      max-width: 90%;
+      line-height: 1.4;
     }
-      .loading {
+    .loading {
       display: inline-block;
       font-size: 1.5rem;
       color: #a23c94;
@@ -141,19 +132,23 @@
       0%, 80%, 100% { transform: translateY(0); }
       40% { transform: translateY(-8px); }
     }
-.dot {
-  display: inline-block;
-  animation: bounce 1.2s infinite ease-in-out;
-  font-size: 2rem;
-  color: #a23c94;
-}
-.delay1 {
-  animation-delay: 0.2s;
-}
-.delay2 {
-  animation-delay: 0.4s;
-}
-</style>
+    .dot {
+      display: inline-block;
+      animation: bounce 1.2s infinite ease-in-out;
+      font-size: 2rem;
+      color: #a23c94;
+    }
+    .delay1 { animation-delay: 0.2s; }
+    .delay2 { animation-delay: 0.4s; }
+
+    @media (max-width: 660px) {
+      .content-wrapper {
+        transform: scale(0.9);
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="content-wrapper">
@@ -172,15 +167,15 @@
 
         <label for="congregacao">Congregação:</label>
         <input type="text" id="congregacao" name="congregacao" required>
-<label for="telefone">Telefone:</label>
-<input type="tel" id="telefone" name="telefone" required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" required>
+
         <button type="submit" id="submitBtn">🍵 Eu vou</button>
         <div class="msg" id="mensagem"></div>
-<div id="loading" class="loading" style="display:none;">
-  <span class="dot">.</span>
-  <span class="dot delay1">.</span>
-  <span class="dot delay2">.</span>
-</div>
+        <div id="loading" class="loading" style="display:none;">
+          <span class="dot">.</span><span class="dot delay1">.</span><span class="dot delay2">.</span>
+        </div>
       </form>
     </div>
   </div>
@@ -190,27 +185,67 @@
     <span id="successMessage">Inscrição realizada 🥰</span>
   </div>
 
+  <div id="pixModal" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 20; justify-content: center; align-items: center;">
+    <div style="background: white; padding: 2rem; border-radius: 1rem; width: 90%; max-width: 500px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-align: center;">
+      <h2 style="color: #a23c94;">Confirmação da sua vaga 💳✨</h2>
+      <p style="margin: 1rem 0; font-size: 1rem; color: #444;">
+        Para garantir sua participação no nosso chá, é necessário efetuar o pagamento de uma taxa simbólica e retirar sua pulseira com sua líder local do círculo de oração.<br><br>
+        A pulseira será seu ingresso para entrada — além de um lembrete charmoso do nosso encontro! 💕<br><br>
+        Use a chave PIX abaixo:
+      </p>
+      <input id="pixKey" readonly value="7d3cb0f6-adfb-4071-83f1-662235511c9b" style="width: 100%; font-size: 1.1rem; text-align: center; padding: 0.5rem; border-radius: 10px; border: 1px solid #aaa;" />
+      <button onclick="copyPixKey()" style="margin-top: 0.5rem; background: #a23c94; color: white; border: none; border-radius: 10px; padding: 0.5rem 1rem; cursor: pointer;">📋 Copiar chave PIX</button>
+      <p style="color: #666; margin-top: 1rem;">Se tiver dúvidas ou não quiser pagar com Pix, entre em contato com a irmã Penha (31 99702-2582)</p>
+      <button onclick="confirmarEnvio()" style="margin-top: 1rem; background: #d291bc; color: white; padding: 0.7rem 1.2rem; border: none; border-radius: 12px; font-size: 1rem;">✅ Confirmar</button>
+    </div>
+  </div>
+
   <script>
+    let enviarFormulario = false;
+
+    function copyPixKey() {
+      const pixInput = document.getElementById("pixKey");
+      pixInput.select();
+      document.execCommand("copy");
+      alert("Chave PIX copiada!");
+    }
+
+    function confirmarEnvio() {
+      document.getElementById('pixModal').style.display = 'none';
+      enviarFormulario = true;
+      document.getElementById("inscricaoForm").dispatchEvent(new Event("submit"));
+    }
+
     document.getElementById('inscricaoForm').addEventListener('submit', async function(e) {
+      if (!enviarFormulario) {
+        e.preventDefault();
+        document.getElementById('pixModal').style.display = 'flex';
+        return;
+      }
+
       e.preventDefault();
       const nome = document.getElementById('nome').value;
       const congregacao = document.getElementById('congregacao').value;
+      const telefone = document.getElementById('telefone').value;
+
       document.getElementById('loading').style.display = 'block';
-document.getElementById('submitBtn').style.display = 'none';
+      document.getElementById('submitBtn').style.display = 'none';
+
       const resposta = await fetch('https://script.google.com/macros/s/AKfycbyMh6ptNEK3_PeKJOJVm_FuypTnM301vjOIMm0I3bkk_IzfHGEfQ9DVnp1z8spHHun_1w/exec', {
         method: 'POST',
-        body: new URLSearchParams({ nome, congregacao, telefone: document.getElementById('telefone').value })
+        body: new URLSearchParams({ nome, congregacao, telefone })
       });
+
       const resultado = await resposta.text();
 
       document.getElementById('loading').style.display = 'none';
-document.getElementById('submitBtn').style.display = 'block';
+      document.getElementById('submitBtn').style.display = 'block';
+      enviarFormulario = false;
+
       if (resultado.includes("sucesso")) {
         document.getElementById('successOverlay').style.display = 'flex';
         document.getElementById('successMessage').innerText = `🥰 Inscrição realizada com sucesso, ${nome}!`;
-        
       } else {
-        document.getElementById('loading').style.display = 'none';
         document.getElementById('mensagem').innerText = "Houve um erro ao enviar.";
       }
     });
