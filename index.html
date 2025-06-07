@@ -59,6 +59,16 @@
       min-width: 100px;
       text-align: left;
     }
+    .info-button {
+      margin-top: 1rem;
+      background-color: #a23c94;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
     .form-container {
       background-color: rgba(255, 255, 255, 0.95);
       padding: 1.5rem;
@@ -140,6 +150,42 @@
     }
     .delay1 { animation-delay: 0.2s; }
     .delay2 { animation-delay: 0.4s; }
+    #importantModal, #pixModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 30;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+    .modal-content h2 {
+      color: #a23c94;
+      margin-bottom: 1rem;
+    }
+    .modal-content p {
+      color: #444;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .modal-content button {
+      margin-top: 1rem;
+      background: #a23c94;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      cursor: pointer;
+    }
 
     @media (max-width: 660px) {
       .content-wrapper {
@@ -159,7 +205,9 @@
       <div class="info-line"><strong>Palestrante:</strong> <span>Sabrina Carvalho</span></div>
       <div class="info-line"><strong>Louvor:</strong> <span>Erica Regina</span></div>
       <div class="info-line"><strong>Local:</strong> <span>AD - Bonsucesso</span></div>
+      <button class="info-button" onclick="abrirModalImportante()">Informações importantes</button>
     </div>
+
     <div class="form-container">
       <form id="inscricaoForm">
         <label for="nome">Nome completo:</label>
@@ -180,28 +228,49 @@
     </div>
   </div>
 
+  <!-- Modal de sucesso -->
   <div class="success-overlay" id="successOverlay">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhp7KPU2pLRsEflmochhvy2LsaYN8x2z0Wwa8ON3UM9YYPkBdnVf-FTeXo4TwsmeRNm7MZ3mCqT2lZD1yYKgzkjuxTStWDd5pW4s4dqHpx8NWK2mqsz6pucUo8DHJQULRI1h7uuoX6WwuRT/" alt="chá gif">
     <span id="successMessage">Inscrição realizada 🥰</span>
   </div>
 
-  <div id="pixModal" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 20; justify-content: center; align-items: center;">
-    <div style="background: white; padding: 2rem; border-radius: 1rem; width: 90%; max-width: 500px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-align: center;">
-      <h2 style="color: #a23c94;">Confirmação da sua vaga 💳✨</h2>
-      <p style="margin: 1rem 0; font-size: 1rem; color: #444;">
+  <!-- Modal de Informações Importantes -->
+  <div id="importantModal">
+    <div class="modal-content">
+      <h2>Aviso importante</h2>
+      <p>Esse chá foi preparado com todo cuidado para ser um momento especial apenas entre mulheres adultas.<br><br>
+      Por isso, pedimos que venham sozinhas, sem crianças e adolescentes, para que você possa curtir e se conectar sem preocupações.<br><br>
+      Contamos com sua compreensão e prometemos que vai valer a pena!</p>
+      <button onclick="fecharModalImportante()">Fechar</button>
+    </div>
+  </div>
+
+  <!-- Modal de confirmação PIX -->
+  <div id="pixModal">
+    <div class="modal-content">
+      <h2>Confirmação da sua vaga 💳✨</h2>
+      <p>
         Para garantir sua participação no nosso chá, é necessário efetuar o pagamento de uma taxa simbólica e retirar sua pulseira com sua líder local do círculo de oração.<br><br>
         A pulseira será seu ingresso para entrada — além de um lembrete charmoso do nosso encontro! 💕<br><br>
         Use a chave PIX abaixo:
       </p>
       <input id="pixKey" readonly value="7d3cb0f6-adfb-4071-83f1-662235511c9b" style="width: 100%; font-size: 1.1rem; text-align: center; padding: 0.5rem; border-radius: 10px; border: 1px solid #aaa;" />
-      <button onclick="copyPixKey()" style="margin-top: 0.5rem; background: #a23c94; color: white; border: none; border-radius: 10px; padding: 0.5rem 1rem; cursor: pointer;">📋 Copiar chave PIX</button>
+      <button onclick="copyPixKey()">📋 Copiar chave PIX</button>
       <p style="color: #666; margin-top: 1rem;">Se tiver dúvidas ou não quiser pagar com Pix, entre em contato com a irmã Penha (31 99702-2582)</p>
-      <button onclick="confirmarEnvio()" style="margin-top: 1rem; background: #d291bc; color: white; padding: 0.7rem 1.2rem; border: none; border-radius: 12px; font-size: 1rem;">✅ Confirmar</button>
+      <button onclick="confirmarEnvio()">✅ Confirmar</button>
     </div>
   </div>
 
   <script>
     let enviarFormulario = false;
+
+    function abrirModalImportante() {
+      document.getElementById('importantModal').style.display = 'flex';
+    }
+
+    function fecharModalImportante() {
+      document.getElementById('importantModal').style.display = 'none';
+    }
 
     function copyPixKey() {
       const pixInput = document.getElementById("pixKey");
