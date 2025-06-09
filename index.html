@@ -46,19 +46,6 @@
       font-size: 1.7rem;
       text-align: center;
     }
-    .top-info .info-line {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.3rem 0;
-      font-size: 0.95rem;
-      color: #444;
-      border-bottom: 1px dotted #ddd;
-    }
-    .top-info .info-line strong {
-      color: #7a2f6f;
-      min-width: 100px;
-      text-align: left;
-    }
     .info-button {
       margin-top: 1rem;
       background-color: #a23c94;
@@ -150,15 +137,7 @@
     }
     .delay1 { animation-delay: 0.2s; }
     .delay2 { animation-delay: 0.4s; }
-    #importantModal, #pixModal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 30;
-      justify-content: center;
-      align-items: center;
-    }
+
     .modal-content {
       background: white;
       padding: 2rem;
@@ -168,6 +147,15 @@
       text-align: center;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     }
+    #eventoModal, #pixModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 30;
+      justify-content: center;
+      align-items: center;
+    }
     .modal-content h2 {
       color: #a23c94;
       margin-bottom: 1rem;
@@ -176,15 +164,6 @@
       color: #444;
       font-size: 1rem;
       line-height: 1.5;
-    }
-    .modal-content button {
-      margin-top: 1rem;
-      background: #a23c94;
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 10px;
-      cursor: pointer;
     }
 
     @media (max-width: 660px) {
@@ -200,12 +179,18 @@
   <div class="content-wrapper">
     <div class="top-info">
       <h1>Chá de Mulheres - Heroínas da Fé</h1>
-      <div class="info-line"><strong>Data:</strong> <span>05 de Julho</span></div>
-      <div class="info-line"><strong>Horário:</strong> <span>14h às 18h</span></div>
-      <div class="info-line"><strong>Palestrante:</strong> <span>Sabrina Carvalho</span></div>
-      <div class="info-line"><strong>Louvor:</strong> <span>Erica Regina</span></div>
-      <div class="info-line"><strong>Local:</strong> <span>AD - Bonsucesso</span></div>
-      <button class="info-button" onclick="abrirModalImportante()">Informações importantes</button>
+
+      <div style="background: #fff4f7; padding: 1rem; border-radius: 10px; border: 1px solid #f4c2d7; margin-bottom: 1rem;">
+  <h2 style="color: #a23c94; margin-top: 0;">🔔 Aviso importante</h2>
+  <p style="margin: 0; color: #444; font-size: 0.95rem; line-height: 1.5;">
+    Este chá foi preparado com todo carinho 💖 para ser um momento especial apenas entre mulheres adultas 👩‍🦳👩‍🦰.<br><br>
+    Por isso, pedimos que venham sozinhas 🙏, sem crianças 👶 ou adolescentes 👧, para que você possa curtir e se conectar sem preocupações 🌷.<br><br>
+    Contamos com sua compreensão 🤝 e prometemos que vai valer a pena! ✨💐
+  </p>
+</div>
+
+
+      <button class="info-button" onclick="abrirModalEvento()">Detalhes do evento</button>
     </div>
 
     <div class="form-container">
@@ -228,24 +213,20 @@
     </div>
   </div>
 
-  <!-- Modal de sucesso -->
-  <div class="success-overlay" id="successOverlay">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhp7KPU2pLRsEflmochhvy2LsaYN8x2z0Wwa8ON3UM9YYPkBdnVf-FTeXo4TwsmeRNm7MZ3mCqT2lZD1yYKgzkjuxTStWDd5pW4s4dqHpx8NWK2mqsz6pucUo8DHJQULRI1h7uuoX6WwuRT/" alt="chá gif">
-    <span id="successMessage">Inscrição realizada 🥰</span>
-  </div>
-
-  <!-- Modal de Informações Importantes -->
-  <div id="importantModal">
+  <!-- Modal de evento -->
+  <div id="eventoModal">
     <div class="modal-content">
-      <h2>Aviso importante</h2>
-      <p>Esse chá foi preparado com todo cuidado para ser um momento especial apenas entre mulheres adultas.<br><br>
-      Por isso, pedimos que venham sozinhas, sem crianças e adolescentes, para que você possa curtir e se conectar sem preocupações.<br><br>
-      Contamos com sua compreensão e prometemos que vai valer a pena!</p>
-      <button onclick="fecharModalImportante()">Fechar</button>
+      <h2>Detalhes do evento</h2>
+      <div class="info-line"><strong>Data:</strong> <span>05 de Julho</span></div>
+      <div class="info-line"><strong>Horário:</strong> <span>14h às 18h</span></div>
+      <div class="info-line"><strong>Palestrante:</strong> <span>Sabrina Carvalho</span></div>
+      <div class="info-line"><strong>Louvor:</strong> <span>Erica Regina</span></div>
+      <div class="info-line"><strong>Local:</strong> <span>AD - Bonsucesso</span></div>
+      <button onclick="fecharModalEvento()">Fechar</button>
     </div>
   </div>
 
-  <!-- Modal de confirmação PIX -->
+  <!-- Modal de PIX -->
   <div id="pixModal">
     <div class="modal-content">
       <h2>Confirmação da sua vaga 💳✨</h2>
@@ -261,15 +242,21 @@
     </div>
   </div>
 
+  <!-- Sucesso -->
+  <div class="success-overlay" id="successOverlay">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhp7KPU2pLRsEflmochhvy2LsaYN8x2z0Wwa8ON3UM9YYPkBdnVf-FTeXo4TwsmeRNm7MZ3mCqT2lZD1yYKgzkjuxTStWDd5pW4s4dqHpx8NWK2mqsz6pucUo8DHJQULRI1h7uuoX6WwuRT/" alt="chá gif">
+    <span id="successMessage">Inscrição realizada 🥰</span>
+  </div>
+
   <script>
     let enviarFormulario = false;
 
-    function abrirModalImportante() {
-      document.getElementById('importantModal').style.display = 'flex';
+    function abrirModalEvento() {
+      document.getElementById('eventoModal').style.display = 'flex';
     }
 
-    function fecharModalImportante() {
-      document.getElementById('importantModal').style.display = 'none';
+    function fecharModalEvento() {
+      document.getElementById('eventoModal').style.display = 'none';
     }
 
     function copyPixKey() {
