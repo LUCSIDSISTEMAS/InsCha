@@ -10,28 +10,27 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      height: 100%;
       background-color: #ffcfd3;
       background-image: url('https://i.pinimg.com/1200x/70/03/70/700370d78ad0b8c946b0a68cdef336a7.jpg');
       background-repeat: no-repeat;
       background-position: center top;
-      background-size: contain;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
+      background-size: cover;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
+
     .content-wrapper {
-      width: 640px;
-      height: 960px;
-      position: relative;
-      padding: 80px 40px 60px;
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 10px clamp(12px, 5vw, 40px) 60px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: start;
       z-index: 1;
     }
+
     .top-info {
       background-color: rgba(255, 255, 255, 0.9);
       padding: 1.5rem;
@@ -40,12 +39,14 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       margin-bottom: 1.2rem;
     }
+
     .top-info h1 {
       margin: 0 0 1rem;
       color: #a23c94;
       font-size: 1.7rem;
       text-align: center;
     }
+
     .info-button {
       margin-top: 1rem;
       background-color: #a23c94;
@@ -55,7 +56,9 @@
       border-radius: 10px;
       font-size: 1rem;
       cursor: pointer;
+      width: 100%;
     }
+
     .form-container {
       background-color: rgba(255, 255, 255, 0.95);
       padding: 1.5rem;
@@ -64,6 +67,7 @@
       text-align: center;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     }
+
     label {
       display: block;
       text-align: left;
@@ -71,6 +75,7 @@
       color: #555;
       font-weight: bold;
     }
+
     input {
       width: 100%;
       padding: 10px;
@@ -79,6 +84,7 @@
       margin-top: 0.3rem;
       font-size: 1rem;
     }
+
     button {
       margin-top: 1.5rem;
       background-color: #d291bc;
@@ -91,25 +97,28 @@
       transition: background-color 0.3s ease;
       width: 100%;
     }
+
     button:hover {
       background-color: #c27ba0;
     }
+
     .success-overlay {
       position: fixed;
       inset: 0;
       background: rgba(255, 255, 255, 0.85);
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       z-index: 10;
-      display: none;
     }
+
     .success-overlay img {
       width: 120px;
       height: auto;
       margin-bottom: 20px;
     }
+
     .success-overlay span {
       font-size: 1.5rem;
       color: #a23c94;
@@ -118,23 +127,27 @@
       max-width: 90%;
       line-height: 1.4;
     }
+
     .loading {
-      display: inline-block;
+      display: none;
       font-size: 1.5rem;
       color: #a23c94;
       animation: bounce 1.2s infinite ease-in-out;
       margin-top: 1rem;
     }
+
     @keyframes bounce {
       0%, 80%, 100% { transform: translateY(0); }
       40% { transform: translateY(-8px); }
     }
+
     .dot {
       display: inline-block;
       animation: bounce 1.2s infinite ease-in-out;
       font-size: 2rem;
       color: #a23c94;
     }
+
     .delay1 { animation-delay: 0.2s; }
     .delay2 { animation-delay: 0.4s; }
 
@@ -147,6 +160,7 @@
       text-align: center;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     }
+
     #eventoModal, #pixModal {
       display: none;
       position: fixed;
@@ -156,39 +170,32 @@
       justify-content: center;
       align-items: center;
     }
+
     .modal-content h2 {
       color: #a23c94;
       margin-bottom: 1rem;
     }
+
     .modal-content p {
       color: #444;
       font-size: 1rem;
       line-height: 1.5;
-    }
-
-    @media (max-width: 660px) {
-      .content-wrapper {
-        transform: scale(0.9);
-        width: 100%;
-        height: auto;
-      }
     }
   </style>
 </head>
 <body>
   <div class="content-wrapper">
     <div class="top-info">
-      <h1>Chá de Mulheres - Heroínas da Fé</h1>
+      <h1>Chá de Mulheres</h1>
 
       <div style="background: #fff4f7; padding: 1rem; border-radius: 10px; border: 1px solid #f4c2d7; margin-bottom: 1rem;">
-  <h2 style="color: #a23c94; margin-top: 0;">🔔 Aviso importante</h2>
-  <p style="margin: 0; color: #444; font-size: 0.95rem; line-height: 1.5;">
-    Este chá foi preparado com todo carinho 💖 para ser um momento especial apenas entre mulheres adultas 👩‍🦳👩‍🦰.<br><br>
-    Por isso, pedimos que venham sozinhas 🙏, sem crianças 👶 ou adolescentes 👧, para que você possa curtir e se conectar sem preocupações 🌷.<br><br>
-    Contamos com sua compreensão 🤝 e prometemos que vai valer a pena! ✨💐
-  </p>
-</div>
-
+        <h2 style="color: #a23c94; margin-top: 0;">🔔 Aviso importante</h2>
+        <p style="margin: 0; color: #444; font-size: 0.95rem; line-height: 1.5;">
+          Este chá foi preparado com todo carinho 💖 para ser um momento especial apenas entre mulheres adultas 👩‍🦳👩‍🦰.<br><br>
+          Por isso, pedimos que venham sozinhas 🙏, sem crianças 👶 ou adolescentes 👧, para que você possa curtir e se conectar sem preocupações 🌷.<br><br>
+          Contamos com sua compreensão 🤝 e prometemos que vai valer a pena! ✨💐
+        </p>
+      </div>
 
       <button class="info-button" onclick="abrirModalEvento()">Detalhes do evento</button>
     </div>
@@ -206,7 +213,7 @@
 
         <button type="submit" id="submitBtn">🍵 Eu vou</button>
         <div class="msg" id="mensagem"></div>
-        <div id="loading" class="loading" style="display:none;">
+        <div id="loading" class="loading">
           <span class="dot">.</span><span class="dot delay1">.</span><span class="dot delay2">.</span>
         </div>
       </form>
@@ -217,11 +224,11 @@
   <div id="eventoModal">
     <div class="modal-content">
       <h2>Detalhes do evento</h2>
-      <div class="info-line"><strong>Data:</strong> <span>05 de Julho</span></div>
-      <div class="info-line"><strong>Horário:</strong> <span>14h às 18h</span></div>
-      <div class="info-line"><strong>Palestrante:</strong> <span>Sabrina Carvalho</span></div>
-      <div class="info-line"><strong>Louvor:</strong> <span>Erica Regina</span></div>
-      <div class="info-line"><strong>Local:</strong> <span>AD - Bonsucesso</span></div>
+      <div><strong>Data:</strong> 05 de Julho</div>
+      <div><strong>Horário:</strong> 14h às 18h</div>
+      <div><strong>Palestrante:</strong> Sabrina Carvalho</div>
+      <div><strong>Louvor:</strong> Erica Regina</div>
+      <div><strong>Local:</strong> AD - Bonsucesso</div>
       <button onclick="fecharModalEvento()">Fechar</button>
     </div>
   </div>
