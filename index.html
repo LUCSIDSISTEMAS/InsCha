@@ -1,317 +1,50 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Chá de Mulheres - Inscrição</title>
+  <title>Inscrições Encerradas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    * { box-sizing: border-box; }
     html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
+      height: 100%;
       background-color: #ffcfd3;
-      background-image: url('https://i.pinimg.com/1200x/70/03/70/700370d78ad0b8c946b0a68cdef336a7.jpg');
-      background-repeat: no-repeat;
-      background-position: center top;
-      background-size: cover;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .content-wrapper {
-      width: 100%;
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 10px clamp(12px, 5vw, 40px) 60px;
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: start;
-      z-index: 1;
-    }
-
-    .top-info {
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 1.5rem;
-      border-radius: 1rem;
-      width: 100%;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      margin-bottom: 1.2rem;
-    }
-
-    .top-info h1 {
-      margin: 0 0 1rem;
-      color: #a23c94;
-      font-size: 1.7rem;
-      text-align: center;
-    }
-
-    .info-button {
-      margin-top: 1rem;
-      background-color: #a23c94;
-      color: white;
-      border: none;
-      padding: 0.6rem 1rem;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    .form-container {
-      background-color: rgba(255, 255, 255, 0.95);
-      padding: 1.5rem;
-      border-radius: 1rem;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    label {
-      display: block;
-      text-align: left;
-      margin-top: 1rem;
-      color: #555;
-      font-weight: bold;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      margin-top: 0.3rem;
-      font-size: 1rem;
-    }
-
-    button {
-      margin-top: 1.5rem;
-      background-color: #d291bc;
-      color: white;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: 100%;
-    }
-
-    button:hover {
-      background-color: #c27ba0;
-    }
-
-    .success-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.85);
-      display: none;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      z-index: 10;
-    }
-
-    .success-overlay img {
-      width: 120px;
-      height: auto;
-      margin-bottom: 20px;
-    }
-
-    .success-overlay span {
-      font-size: 1.5rem;
-      color: #a23c94;
-      font-weight: bold;
       text-align: center;
-      max-width: 90%;
-      line-height: 1.4;
     }
-
-    .loading {
-      display: none;
-      font-size: 1.5rem;
-      color: #a23c94;
-      animation: bounce 1.2s infinite ease-in-out;
-      margin-top: 1rem;
-    }
-
-    @keyframes bounce {
-      0%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-8px); }
-    }
-
-    .dot {
-      display: inline-block;
-      animation: bounce 1.2s infinite ease-in-out;
-      font-size: 2rem;
-      color: #a23c94;
-    }
-
-    .delay1 { animation-delay: 0.2s; }
-    .delay2 { animation-delay: 0.4s; }
-
-    .modal-content {
+    .message-box {
       background: white;
       padding: 2rem;
       border-radius: 1rem;
-      max-width: 500px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      max-width: 90%;
     }
-
-    #eventoModal, #pixModal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 30;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content h2 {
+    h1 {
       color: #a23c94;
+      font-size: 2rem;
       margin-bottom: 1rem;
     }
-
-    .modal-content p {
-      color: #444;
-      font-size: 1rem;
+    p {
+      color: #555;
+      font-size: 1.1rem;
       line-height: 1.5;
+    }
+    .emoji {
+      font-size: 3rem;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <div class="content-wrapper">
-    <div class="top-info">
-      <h1>Chá de Mulheres</h1>
-
-      <div style="background: #fff4f7; padding: 1rem; border-radius: 10px; border: 1px solid #f4c2d7; margin-bottom: 1rem;">
-        <h2 style="color: #a23c94; margin-top: 0;">🔔 Aviso importante</h2>
-        <p style="margin: 0; color: #444; font-size: 0.95rem; line-height: 1.5;">
-          Este chá foi preparado com todo carinho 💖 para ser um momento especial apenas entre mulheres adultas 👩‍🦳👩‍🦰.<br><br>
-          Por isso, pedimos que venham sozinhas 🙏, sem crianças 👶 ou adolescentes 👧, para que você possa curtir e se conectar sem preocupações 🌷.<br><br>
-          Contamos com sua compreensão 🤝 e prometemos que vai valer a pena! ✨💐
-        </p>
-      </div>
-
-      <button class="info-button" onclick="abrirModalEvento()">Detalhes do evento</button>
-    </div>
-
-    <div class="form-container">
-      <form id="inscricaoForm">
-        <label for="nome">Nome completo:</label>
-        <input type="text" id="nome" name="nome" required>
-
-        <label for="congregacao">Congregação:</label>
-        <input type="text" id="congregacao" name="congregacao" required>
-
-        <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone" required>
-
-        <button type="submit" id="submitBtn">🍵 Eu vou</button>
-        <div class="msg" id="mensagem"></div>
-        <div id="loading" class="loading">
-          <span class="dot">.</span><span class="dot delay1">.</span><span class="dot delay2">.</span>
-        </div>
-      </form>
-    </div>
+  <div class="message-box">
+    <div class="emoji">🚫</div>
+    <h1>Inscrições Encerradas</h1>
+    <p>As vagas para o nosso Chá de Mulheres foram preenchidas. Agradecemos o interesse de todas! 💕</p>
   </div>
-
-  <!-- Modal de evento -->
-  <div id="eventoModal">
-    <div class="modal-content">
-      <h2>Detalhes do evento</h2>
-      <div><strong>Data:</strong> 05 de Julho</div>
-      <div><strong>Horário:</strong> 14h às 18h</div>
-      <div><strong>Palestrante:</strong> Sabrina Carvalho</div>
-      <div><strong>Louvor:</strong> Erica Regina</div>
-      <div><strong>Local:</strong> AD - Bonsucesso</div>
-      <button onclick="fecharModalEvento()">Fechar</button>
-    </div>
-  </div>
-
-  <!-- Modal de PIX -->
-  <div id="pixModal">
-    <div class="modal-content">
-      <h2>Confirmação da sua vaga 💳✨</h2>
-      <p>
-        Para garantir sua participação no nosso chá, é necessário efetuar o pagamento de uma taxa simbólica e retirar sua pulseira com sua líder local do círculo de oração.<br><br>
-        A pulseira será seu ingresso para entrada — além de um lembrete charmoso do nosso encontro! 💕<br><br>
-        Use a chave PIX abaixo:
-      </p>
-      <input id="pixKey" readonly value="7d3cb0f6-adfb-4071-83f1-662235511c9b" style="width: 100%; font-size: 1.1rem; text-align: center; padding: 0.5rem; border-radius: 10px; border: 1px solid #aaa;" />
-      <button onclick="copyPixKey()">📋 Copiar chave PIX</button>
-      <p style="color: #666; margin-top: 1rem;">Se tiver dúvidas ou não quiser pagar com Pix, entre em contato com a irmã Penha (31 99702-2582)</p>
-      <button onclick="confirmarEnvio()">✅ Confirmar</button>
-    </div>
-  </div>
-
-  <!-- Sucesso -->
-  <div class="success-overlay" id="successOverlay">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhp7KPU2pLRsEflmochhvy2LsaYN8x2z0Wwa8ON3UM9YYPkBdnVf-FTeXo4TwsmeRNm7MZ3mCqT2lZD1yYKgzkjuxTStWDd5pW4s4dqHpx8NWK2mqsz6pucUo8DHJQULRI1h7uuoX6WwuRT/" alt="chá gif">
-    <span id="successMessage">Inscrição realizada 🥰</span>
-  </div>
-
-  <script>
-    let enviarFormulario = false;
-
-    function abrirModalEvento() {
-      document.getElementById('eventoModal').style.display = 'flex';
-    }
-
-    function fecharModalEvento() {
-      document.getElementById('eventoModal').style.display = 'none';
-    }
-
-    function copyPixKey() {
-      const pixInput = document.getElementById("pixKey");
-      pixInput.select();
-      document.execCommand("copy");
-      alert("Chave PIX copiada!");
-    }
-
-    function confirmarEnvio() {
-      document.getElementById('pixModal').style.display = 'none';
-      enviarFormulario = true;
-      document.getElementById("inscricaoForm").dispatchEvent(new Event("submit"));
-    }
-
-    document.getElementById('inscricaoForm').addEventListener('submit', async function(e) {
-      if (!enviarFormulario) {
-        e.preventDefault();
-        document.getElementById('pixModal').style.display = 'flex';
-        return;
-      }
-
-      e.preventDefault();
-      const nome = document.getElementById('nome').value;
-      const congregacao = document.getElementById('congregacao').value;
-      const telefone = document.getElementById('telefone').value;
-
-      document.getElementById('loading').style.display = 'block';
-      document.getElementById('submitBtn').style.display = 'none';
-
-      const resposta = await fetch('https://script.google.com/macros/s/AKfycbyMh6ptNEK3_PeKJOJVm_FuypTnM301vjOIMm0I3bkk_IzfHGEfQ9DVnp1z8spHHun_1w/exec', {
-        method: 'POST',
-        body: new URLSearchParams({ nome, congregacao, telefone })
-      });
-
-      const resultado = await resposta.text();
-
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('submitBtn').style.display = 'block';
-      enviarFormulario = false;
-
-      if (resultado.includes("sucesso")) {
-        document.getElementById('successOverlay').style.display = 'flex';
-        document.getElementById('successMessage').innerText = `🥰 Inscrição realizada com sucesso, ${nome}!`;
-      } else {
-        document.getElementById('mensagem').innerText = "Houve um erro ao enviar.";
-      }
-    });
-  </script>
 </body>
 </html>
